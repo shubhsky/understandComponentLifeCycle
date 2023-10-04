@@ -4,8 +4,9 @@ class TimerOne extends React.Component{
     constructor(){
         super();
         this.state = {
-            count : 0
+            time : 0
         }
+        this.timer = null; 
         console.log('TimerOne Constructor')
     }
 
@@ -18,19 +19,11 @@ class TimerOne extends React.Component{
         return true
     }
 
-    handleIncrease = () =>{
-        this.setState((prevState)=>{
-            return {count:prevState.count + 1}
-        })
-    }
-
     render(){
         console.log('TimerOne render')
         return (
             <>
-                <h1>Counter</h1>
-                <h2>{this.state.count}</h2>
-                <button onClick={this.handleIncrease}>Increase</button>
+                <h1>Time Spent-{new Date(this.state.time * 1000).toISOString().slice(11,19)}</h1>
             </>
         )
     }
@@ -38,6 +31,10 @@ class TimerOne extends React.Component{
     componentDidMount(){
         console.log('TimerOne ComponentDidMount');
         console.log('----------------------------------------------');
+
+        this.timer = setInterval(()=>{
+            this.setState((prevState)=>({time:prevState.time+1}))
+        },1000)
     }
 
     getSnapshotBeforeUpdate(prevProps, preState){
@@ -48,6 +45,11 @@ class TimerOne extends React.Component{
     componentDidUpdate(){
         console.log('TimerOne componentDidUpdate');
         console.log('----------------------------------------------');
+    }
+
+    componentWillUnmount(){
+        console.log('TimerOne ComponentWillUnmount')
+        clearInterval(this.timer)
     }
 
 }
