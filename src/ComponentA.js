@@ -1,4 +1,5 @@
 import React from "react";
+import ComponentB from "./ComponentB";
 
 class ComponentA extends React.Component{
     constructor(){
@@ -7,10 +8,16 @@ class ComponentA extends React.Component{
             name:'ComponentA'
         }
         console.log('Component A constructor')
+        // this.setState({
+        //     name:'CA'
+        // })
     }
 
     static getDerivedStateFromProps(){
-        console.log('Component A getDerivedStateFromProps')
+        console.log('Component A getDerivedStateFromProps');
+        // this.setState({
+        //     name:'CA'
+        // })
         return null;
     }
 
@@ -20,8 +27,14 @@ class ComponentA extends React.Component{
 
     render(){
         console.log('Component A render')
+        // this.setState({
+        //     name:'CA'
+        // })
         return(
-            <h1>{this.state.name}</h1>
+            <>
+                <h1>{this.state.name}</h1>  
+                <ComponentB/>
+            </>
         )
     }
 }
