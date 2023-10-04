@@ -1,5 +1,4 @@
 import React from "react";
-import ComponentB from "./ComponentB";
 
 class ComponentA extends React.Component{
     constructor(){
@@ -9,20 +8,12 @@ class ComponentA extends React.Component{
             data:[]
         }
         console.log('Component A constructor')
-        // this.setState({
-        //     name:'CA'
-        // })
     }
 
     static getDerivedStateFromProps(){
         console.log('Component A getDerivedStateFromProps');
-        // this.setState({
-        //     name:'CA'
-        // })
         return null;
     }
-
-    // https://jsonplaceholder.typicode.com/users
 
     componentDidMount(){
         console.log('Component A component did mount')
@@ -33,21 +24,16 @@ class ComponentA extends React.Component{
 
     render(){
         console.log('Component A render')
-        // console.log(this.state.data)
-        // this.setState({
-        //     name:'CA'
-        // })
         return(
             <>
                 <h1>{this.state.name}</h1>
                 <ul>
-                    {this.state.data.map((d)=>{
+                    {this.state.data.map((d,index)=>{
                         return(
-                            <li>{d.name}</li>
+                            <li key={index}>{d.name}</li>
                         )
                     })}
                 </ul>
-                <ComponentB/>
             </>
         )
     }
